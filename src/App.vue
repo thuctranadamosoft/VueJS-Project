@@ -1,10 +1,30 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
+    <router-link to="/dashboard">Dashboard</router-link> |
+    <router-link to="/home">Home</router-link> |
     <router-link to="/about">About</router-link>
+    <router-link to="/setup-example">Setup Example</router-link>
+    <router-link to="/sign-in">Sign In</router-link>
+    <router-link to="/my-map">My Map</router-link>
+    <router-link to="/form-validation">Form Validation</router-link>
+    <router-link to="/form-setup">Form Setup</router-link>
   </nav>
   <router-view/>
 </template>
+<script>
+  import { provide } from 'vue'
+
+  export default {
+    name: 'app',
+    setup() {
+      provide('location', 'North Pole')
+      provide('geolocation', {
+        longitude: 90,
+        latitude: 135
+      })
+    }
+  }
+</script>
 
 <style>
 #app {
