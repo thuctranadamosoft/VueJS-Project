@@ -11,27 +11,38 @@
       {{temValue}}
       <slot ></slot>
       <button :class="'btn-style'"  @click="onUpdate(selectUser)">Update</button>
+      <button @click="testCommit">Test commit</button>
     </div>
   </div>
 </template>
 <script>
-  import { inject } from 'vue'
+  import { inject, onMounted } from 'vue'
   import { temp } from '@/models/temp'
 
   export default {
     name: 'Modal-a',
+    emits: ['testCommit'],
 
     props: {
       selectUser: {},
     },
-    setup() {
+    setup(props, {emit}) {
       const temValue =  temp.value.text
       const userLocation = inject('location', 'The Universe')
         const userGeolocation = inject('geolocation')
+      onMounted(() => {
+
+
+      })
+      const testCommit = () => {
+        console.log('zo day')
+        emit('testCommit', 'test commit in setup')
+      }
       return {
         userLocation,
         userGeolocation,
-        temValue
+        temValue,
+        testCommit
       }
     },
     methods: {

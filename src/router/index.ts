@@ -38,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'dashboard',
     component: Dashboard,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -75,7 +75,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'FormSetup',
     component: FormSetup,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     },
     children: [
       {
@@ -98,8 +98,8 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   console.log('to', to)
-  // if (to.matched.some(record => record.meta.requiresAuth)) {
-  if(to.path !== '/sign-in') {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+  // if(to.path !== '/sign-in') {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
       next({ name: 'signin' })

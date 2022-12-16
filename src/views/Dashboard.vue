@@ -14,7 +14,10 @@
         <td><button @click="onDeleteUser(user)">X</button></td>
       </tr>
     </table>
-    <Modal v-if="isDetailModal" :selectUser="selectUser" @update="(user) => updateUserFromModal(user)" @close="() => this.isDetailModal = false">
+    <Modal v-if="isDetailModal" :selectUser="selectUser"
+           @update="(user) => updateUserFromModal(user)" @close="() => this.isDetailModal = false"
+           @testCommit="(commit) => {testCommit(commit)}"
+    >
       {{selectUser}}
     </Modal>
   </div>
@@ -50,6 +53,14 @@ export default {
       })
     }
   },
+  setup() {
+    const testCommit = (commit) => {
+      console.log('commit: ', commit)
+    }
+    return {
+      testCommit
+    }
+  },
   watch: {
     user (value) {
       console.log('value', value)
@@ -75,7 +86,7 @@ export default {
     },
     async onDeleteUser(user) {
       this.$store.dispatch('removeUser', user)
-    }
+    },
   },
   components: {
     Modal

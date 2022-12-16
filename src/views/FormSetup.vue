@@ -44,10 +44,13 @@
   import {reactive, computed} from 'vue'
   import useValidate from '@vuelidate/core'
   import {required, email, minLength, sameAs, helpers} from '@vuelidate/validators'
+  import {onMounted} from "@vue/composition-api";
+  import {useRoute, useRouter} from "vue-router";
 
   export default {
     name: 'FormSetup',
     setup() {
+      const router = useRouter()
       const state = reactive({
         email: '',
         password: {
@@ -72,11 +75,15 @@
         if (!v$.value.$error) {
           // if ANY fail validation
           alert('Form successfully submitted.')
+          router.push({path: '/sign-in'})
         } else {
           alert('Form failed validation')
           console.log('v$ email', v$)
         }
       }
+
+
+
       return {state, v$, submitForm}
     }
   }
