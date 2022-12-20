@@ -8,6 +8,8 @@ import FormValidation from '../views/FormValidation.vue'
 import FormSetup from '../views/FormSetup.vue'
 import FirstChild from '../views/FirstChild.vue'
 import SecondChild from '../views/SecondChild.vue'
+import CompositionAPI from '../views/CompositionAPI.vue'
+import ParentCompositionAPI from '../views/ParentCompositionAPI.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -89,7 +91,23 @@ const routes: Array<RouteRecordRaw> = [
         component: SecondChild
       },
     ]
-  }
+  },
+  {
+    path: '/composition-api',
+    name: 'CompositionAPI',
+    component: CompositionAPI,
+    meta: {
+      requiresAuth: false,
+    }
+  },
+  {
+    path: '/parent-composition-api',
+    name: 'ParentCompositionAPI',
+    component: ParentCompositionAPI,
+    meta: {
+      requiresAuth: false,
+    }
+  },
 ]
 
 const router = createRouter({

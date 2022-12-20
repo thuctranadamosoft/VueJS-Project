@@ -4,33 +4,40 @@
       <h1 class="signin-title">SignIn</h1>
       <div class="form-user">
         <label for="email">Email <span class="require">(*)</span></label>
-        <input autocomplete="off" type="text" name="email" placeholder="Email" v-model=email />
+        <input autocomplete="off" type="text" name="email" placeholder="Email" v-model=username />
       </div>
       <div class="form-password">
         <label for="password">Password <span class="require">(*)</span></label>
         <input autocomplete="off" type="password" name="password" placeholder="Password" v-model="password" />
       </div>
       <p class="signin-forgot">Forgot password ?</p>
-      <button class="btn-submit" type="submit" value="Sign in" />
+      <button class="btn-submit" type="submit">
+        Sign in
+      </button>
     </form>
   </div>
 </template>
 
 <script lang="ts">
+  import {ref, computed} from 'vue'
+  import {minLength, required} from "@vuelidate/validators";
+  import useValidate from "@vuelidate/core";
+
   export default {
     name: 'SignIn',
-    data() {
-      return {
-        email: '',
+    setup() {
+      const formGroup = ref({
+        username: '',
         password: ''
-      }
-    },
-    created () {
-    },
-    methods: {
-      onSubmitForm (e: any) {
-        console.log('function e')
-      }
+      })
+      const rules = computed(() => {
+        const validators = {
+          username: {required},
+          password: {required, minLength: minLength(6)},
+        }
+        return validators
+      })
+      const v$ = useValidate(rules, formGroup)
     }
   }
 </script>

@@ -8,6 +8,7 @@
     <router-link to="/my-map">My Map</router-link>
     <router-link to="/form-validation">Form Validation</router-link>
     <router-link to="/form-setup">Form Setup</router-link>
+    <router-link to="/parent-composition-api">Parent Composition API</router-link>
   </nav>
   <router-view/>
 </template>
